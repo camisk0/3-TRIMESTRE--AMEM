@@ -1,0 +1,150 @@
+:root {
+    --text-color: #f2f5f2; /* Cor do texto */
+    --card-degrade-start: #4B8A59; /* Início do degrade */
+    --card-degrade-end: #1B4324; /* Fim do degrade */
+    --card-back-color: #98fb98; /* Verde pastel para o verso do card */
+    --title-font: 'Press Start 2P', cursive; /* Fonte de pixel para o título e perguntas */
+    --body-font: 'Press Start 2P', cursive; /* Fonte de pixel para o corpo do texto, opcional */
+}
+
+body {
+    background: url('https://i.ibb.co/P94tfn8/verdennamed.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Roboto', sans-serif; /* Fonte moderna e legível */
+}
+
+#quadro {
+    background: url('https://i.ibb.co/h83XTxD/1unnamed.jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para destaque */
+    text-align: center;
+}
+
+#quadro h1 {
+    font-family: var(--title-font);
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    padding: 0;
+}
+
+.cartao {
+    margin: 0;
+    height: 15rem; /* Ajustado para caber 3 em cima e 3 embaixo */
+    background: linear-gradient(to bottom right, var(--card-degrade-start), var(--card-degrade-end));
+    border-radius: 1rem; /* Bordas arredondadas para um efeito mais suave */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para um efeito de elevação */
+    overflow: hidden; /* Para garantir que as bordas arredondadas sejam visíveis */
+    position: relative;
+}
+
+.cartao__conteudo {
+    text-align: center;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 300ms ease-in-out;
+    position: relative;
+    border-radius: 1rem; /* Bordas arredondadas para um efeito mais suave */
+}
+
+.cartao__conteudo h3 {
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    text-align: left;
+    padding: 0.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0.6rem;
+    border-radius: 0.6rem;
+    font-size: 1.2rem; /* Tamanho da fonte ajustado para melhor leitura */
+    backface-visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.3); /* Fundo ligeiramente escuro para contraste */
+    font-family: var(--title-font); /* Fonte de pixel para o título */
+}
+
+.cartao__conteudo p {
+    margin-top: 4rem;
+    padding: 1rem; /* Ajustado para melhor ajuste */
+    font-size: 0.9rem; /* Tamanho da fonte ajustado para melhor leitura */
+    color: var(--text-color);
+    font-family: var(--body-font); /* Fonte de pixel opcional para o corpo do texto */
+}
+
+.cartao__conteudo__pergunta p {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.cartao__conteudo__resposta p {
+    color: var(--card-back-color);
+    font-weight: 700;
+}
+
+.cartao.active .cartao__conteudo {
+    transform: rotateY(180deg);
+}
+
+.cartao__conteudo__pergunta,
+.cartao__conteudo__resposta {
+    backface-visibility: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2rem;
+    border-radius: 1rem; /* Bordas arredondadas para o verso do card */
+}
+
+.cartao__conteudo__resposta {
+    transform: rotateY(180deg);
+    background-color: var(--card-back-color);
+    border: 4px solid var(--card-back-color);
+}
+
+footer {
+    background-color: #2e8b57;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+}
+
+footer p {
+    text-align: center;
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+}
+
+@media (max-width: 560px) {
+    #quadro {
+        padding: 1rem;
+    }
+
+    #container {
+        grid-template-columns: 1fr; /* Apenas uma coluna para mobile */
+        padding: 1rem;
+    }
+
+    .cartao {
+        flex: 1 0 auto;
+    }
+
+    .cartao__conteudo h3 {
+        font-size: 1.5rem;
+    }
+
+    .cartao__conteudo p {
+        font-size: 1.5rem;
+    }
+}
